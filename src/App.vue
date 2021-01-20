@@ -1,15 +1,15 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <bot-counter msg="Bot My Life Back"/>
 </template>
 
 <script lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import BotCounter from './components/BotCounter.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BotCounter
   }
 }
 </script>
