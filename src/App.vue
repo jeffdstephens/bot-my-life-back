@@ -1,17 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <bot-counter msg="Bot My Life Back"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <bot-counter msg="Bot My Life Back" />
 </template>
 
 <script lang="ts">
-import BotCounter from './components/BotCounter.vue'
+import BotCounter from "./components/BotCounter.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    BotCounter
-  }
-}
+    BotCounter,
+  },
+};
 </script>
 
 <style>
