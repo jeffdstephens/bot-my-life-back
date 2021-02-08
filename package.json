@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "date-fns": "^2.17.0",
     "global": "^4.4.0",
-    "prettier": "^1.19.1",
     "vue": "^3.0.0"
   },
   "devDependencies": {
@@ -19,8 +19,6 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-vue": "^7.0.0-0"
   },
   "eslintConfig": {
@@ -30,10 +28,7 @@
     },
     "extends": [
       "plugin:vue/vue3-essential",
-      "plugin:prettier/recommended",
-      "eslint:recommended",
-      "prettier",
-      "prettier/vue"
+      "eslint:recommended"
     ],
     "parserOptions": {
       "parser": "babel-eslint"
