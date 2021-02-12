@@ -1,6 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <bot-counter msg="Bot My Life Back" />
+  <h1>Bot My Life Back</h1>
+  <div>
+    <iframe
+      src="https://giphy.com/embed/mIZ9rPeMKefm0"
+      width="344"
+      height="480"
+      frameborder="0"
+      class="giphy-embed"
+      allowfullscreen
+    ></iframe>
+  </div>
+  <bot-counter />
 </template>
 
 <script lang="ts">
