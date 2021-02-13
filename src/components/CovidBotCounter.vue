@@ -1,49 +1,48 @@
 <template >
-  <div class="BotCounter">
-    <p>This website shows how I got my life back by implementing bots and automation. These bots help me take care of some of the menial tasks throughout the day so I can do more of the things that I truly love.</p>
-  </div>
-  <h2>COVID-19 Daily Status Report Bot</h2>
-  <div>
-    <h4>
-      This automation collects the developers' daily statuses from Slack and emails a single nightly status report for the team. To learn more about the details, check out
-      <a
-        href="https://www.jeffdstephens.com/posts/status-report-automation/"
-        target="_blank"
-      >the blog post</a> where I show you how it's done.
-    </h4>
-    <p>
-      Start date (the day my bot started doing my status for me):
-      <b>{{ getStartDate }}</b>
-    </p>
-    <p>
-      Today's date:
-      <b>{{ getTodaysDate }}</b>
-    </p>
-    <p>
-      Total number of business days elapsed (excluding weekends and U.S. federal holidays):
-      <b>{{ getDayDifferenceAndCalcs() }}</b>
-    </p>
-    <p>
-      Time to complete task (per night):
-      <b>{{statusTaskMinutes}}</b>
-    </p>
-    <p>
-      Total minutes saved:
-      <b>{{statusMinutesElapsed}}</b>
-    </p>
-    <p>
-      Total hours saved:
-      <b>{{statusHoursElapsed }}</b>
-    </p>
-    <p>
-      Total business
-      <b>work days saved</b>:
-      <b>{{statusBizDaysSaved }}</b>
-    </p>
-    <h3>
-      Total DAYS I regained of my life!
-      {{statusDaysSaved}}
-    </h3>
+  <div class="CovidBotCounter">
+    <h2>COVID-19 Daily Status Report Bot</h2>
+    <div>
+      <h4>
+        This automation collects the developers' daily statuses from Slack and emails a single nightly status report for the team. To learn more about the details, check out
+        <a
+          href="https://www.jeffdstephens.com/posts/status-report-automation/"
+          target="_blank"
+        >the blog post</a> where I show you how it's done.
+      </h4>
+      <p>
+        Start date (the day my bot started doing my status for me):
+        <b>{{ getStartDate }}</b>
+      </p>
+      <p>
+        Today's date:
+        <b>{{ getTodaysDate }}</b>
+      </p>
+      <p>
+        Total number of business days elapsed (excluding weekends and U.S. federal holidays):
+        <b>{{ getDayDifferenceAndCalcs() }}</b>
+      </p>
+      <p>
+        Time to complete task (per night):
+        <b>{{statusTaskMinutes}}</b>
+      </p>
+      <p>
+        Total minutes saved:
+        <b>{{statusMinutesElapsed}}</b>
+      </p>
+      <p>
+        Total hours saved:
+        <b>{{statusHoursElapsed }}</b>
+      </p>
+      <p>
+        Total business
+        <b>work days saved</b>:
+        <b>{{statusBizDaysSaved }}</b>
+      </p>
+      <h3>
+        Total DAYS I regained of my life!
+        {{statusDaysSaved}}
+      </h3>
+    </div>
   </div>
 </template>
 
@@ -52,7 +51,7 @@ import differenceInBusinessDays from "date-fns/differenceInBusinessDays";
 import { inRange } from "@18f/us-federal-holidays";
 
 export default {
-  name: "BotCounter",
+  name: "CovidBotCounter",
   props: {},
   data: function () {
     return {
