@@ -1,16 +1,16 @@
 <template >
   <div class="CovidBotCounter">
-    <h2>COVID-19 Daily Status Report Bot</h2>
+    <h2>Daily COVID-19 Team Status Report Bot</h2>
     <div>
       <h4>
         This automation collects the developers' daily statuses from Slack and emails a single nightly status report for the team. To learn more about the details, check out
         <a
           href="https://www.jeffdstephens.com/posts/status-report-automation/"
           target="_blank"
-        >the blog post</a> where I show you how it's done.
+        >the blog post</a> where I show you how it's done. This automation runs every night, Monday-Friday. The time it took to complete this task manually was 30 mins. while the automation process is fully automated, resulting in personal time savings of 30 mins. per day.
       </h4>
       <p>
-        Start date (the day my bot started doing my status for me):
+        Start date (the day my bot started doing the team status for me):
         <b>{{ getStartDate }}</b>
       </p>
       <p>
@@ -23,7 +23,7 @@
       </p>
       <p>
         Time to complete task (per night):
-        <b>{{statusTaskMinutes}}</b>
+        <b>{{statusTaskMinutes}} mins.</b>
       </p>
       <p>
         Total minutes saved:
@@ -63,7 +63,6 @@ export default {
       statusHoursElapsed: 0,
       statusBizDaysSaved: 0,
       statusDaysSaved: 0,
-      expenseTaskMinutes: 20,
     };
   },
   computed: {
@@ -126,7 +125,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
-  margin: 40px 0 0;
+  margin: 10px 40px 40px;
 }
 ul {
   list-style-type: none;

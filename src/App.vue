@@ -1,6 +1,10 @@
 <template>
   <div>
     <h1>Bot My Life Back</h1>
+    <h7>
+      human:
+      <a href="https://www.jeffdstephens.com" target="_blank">jeffdstephens</a>
+    </h7>
     <p>This website shows how I got my life back by implementing bots and automation. These bots help me take care of some of the menial tasks throughout the day so I can do more of the things that I truly love.</p>
   </div>
   <div>
@@ -14,15 +18,18 @@
     ></iframe>
   </div>
   <covid-bot-counter />
+  <expense-bot-counter />
 </template>
 
 <script lang="ts">
 import CovidBotCounter from "./components/CovidBotCounter.vue";
+import ExpenseBotCounter from "./components/ExpenseBotCounter.vue";
 
 export default {
   name: "App",
   components: {
     CovidBotCounter,
+    ExpenseBotCounter,
   },
 };
 </script>
