@@ -48,7 +48,7 @@ export default {
   props: {},
   data: function () {
     return {
-      startDate: new Date("9-01-2020"),
+      startDate: new Date(2020, 8, 1),
       todaysDate: new Date(),
       expenseTaskMinutes: 20,
       expenseMinutesElapsed: 0,
