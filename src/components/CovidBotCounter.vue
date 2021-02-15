@@ -55,7 +55,7 @@ export default {
   props: {},
   data: function () {
     return {
-      startDate: new Date("5-19-2020"),
+      startDate: new Date(2020, 4, 19),
       todaysDate: new Date(),
       statusTaskMinutes: 30,
       statsuDaysElapsed: 0,
