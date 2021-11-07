@@ -7,41 +7,65 @@
         <a
           href="https://www.jeffdstephens.com/posts/status-report-automation/"
           target="_blank"
-        >the blog post</a> where I show you how it's done. This automation runs every night, Monday-Friday. The time it took to complete this task manually was 30 mins. while the automation process is fully automated, resulting in personal time savings of 30 mins. per day.
+        >the blog post</a> where I show you how it's done.
       </h4>
-      <p>
-        Start date (the day my bot started doing the team status for me):
-        <b>{{ getStartDate }}</b>
-      </p>
-      <p>
-        Today's date:
-        <b>{{ getTodaysDate }}</b>
-      </p>
-      <p>
-        Total number of business days elapsed (excluding weekends and U.S. federal holidays):
-        <b>{{ getDayDifferenceAndCalcs() }}</b>
-      </p>
-      <p>
-        Time to complete task (per night):
-        <b>{{statusTaskMinutes}} mins.</b>
-      </p>
-      <p>
-        Total minutes saved:
-        <b>{{statusMinutesElapsed}}</b>
-      </p>
-      <p>
-        Total hours saved:
-        <b>{{statusHoursElapsed }}</b>
-      </p>
-      <p>
-        Total business
-        <b>work days saved</b>:
-        <b>{{statusBizDaysSaved }}</b>
-      </p>
-      <h3>
-        Total DAYS I regained of my life!
-        {{statusDaysSaved}}
-      </h3>
+      <h4>This automation runs every night, Monday-Friday. The time it took to complete this task manually was 30 mins. while the automation process is fully automated, resulting in personal time savings of 30 mins. per day.</h4>
+      <hr />
+      <div class="flex-details-container">
+        <div class="flex-label">Start date (the day my bot started doing the team status for me):</div>
+        <div class="flex-value">
+          <b>{{ getStartDate }}</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">Today's date:</div>
+        <div class="flex-value">
+          <b>{{ getTodaysDate }}</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div
+          class="flex-label"
+        >Total number of business days elapsed (excluding weekends and U.S. federal holidays):</div>
+        <div class="flex-value">
+          <b>{{ getDayDifferenceAndCalcs() }} days</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">Time to complete task (per night):</div>
+        <div class="flex-value">
+          <b>{{statusTaskMinutes}} mins.</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">Total minutes saved:</div>
+        <div class="flex-value">
+          <b>{{statusMinutesElapsed}} mins.</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">Total hours saved:</div>
+        <div class="flex-value">
+          <b>{{statusHoursElapsed }} hrs.</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">
+          Total business
+          <b>work days saved</b>:
+        </div>
+        <div class="flex-value">
+          <b style="color:red;">{{statusBizDaysSaved }} days</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">
+          <b>Total DAYS I regained of my life!</b>
+        </div>
+        <div class="flex-value">
+          <b style="color:red;">{{statusDaysSaved}} days!</b>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -124,20 +148,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 10px 40px 40px;
-}
 ul {
   list-style-type: none;
   padding: 0;
 }
-git branch -m master main li {
-  display: inline-block;
-  margin: 0 10px;
-}
+
 h2 {
   color: #42b983;
 }
+
 a {
   color: #42b983;
 }
