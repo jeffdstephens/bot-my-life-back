@@ -95,4 +95,8 @@ h4 {
   text-align: right;
   padding: 0.5em;
 }
+
+.summary-hr {
+  border-top: 5px solid #8c8b8b;
+}
 </style>

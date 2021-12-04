@@ -37,6 +37,7 @@
           <b>{{statusTaskMinutes}} mins.</b>
         </div>
       </div>
+      <hr class="summary-hr" />
       <div class="flex-details-container">
         <div class="flex-label">Total minutes saved:</div>
         <div class="flex-value">
