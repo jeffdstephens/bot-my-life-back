@@ -32,15 +32,70 @@
         </div>
       </div>
       <div class="flex-details-container">
-        <div class="flex-label">Total minutes saved:</div>
+        <div class="flex-label">Minutes saved:</div>
         <div class="flex-value">
           <b>{{expenseMinutesElapsed}} mins.</b>
         </div>
       </div>
       <div class="flex-details-container">
-        <div class="flex-label">Total hours saved:</div>
+        <div class="flex-label">Hours saved:</div>
         <div class="flex-value">
           <b>{{expenseHoursElapsed }} hrs.</b>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="flex-details-container">
+        <div class="flex-label">
+          In December 2021 I decided to finish the rest of the automation by having the bot login to our online system, fill out a new expense report, attach the file, and have it saved and ready for me to manually submit (after a quick check of course). This additional automation saved me the final 5 minutes of the process and is added into the final numbers below.
+          <br />
+          <br />By the way, if you are interested in learning how you can integrate UIPath with GitLab, be sure to check out
+          <a
+            href="https://www.jeffdstephens.com/how-to-integrate-uipath-with-gitlab/"
+            target="_blank"
+          >my blog post</a> and video where I walk you through the process.
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="flex-details-container">
+        <div class="flex-label">Start date of phase 2:</div>
+        <div class="flex-value">
+          <b>{{ getPhase2StartDate }}</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">Time to complete additional tasks (per month):</div>
+        <div class="flex-value">
+          <b>{{phase2ExpenseTaskMinutes}} mins.</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">Additional minutes saved:</div>
+        <div class="flex-value">
+          <b>{{phase2ExpenseMinutesElapsed}} mins.</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">Additional hours saved:</div>
+        <div class="flex-value">
+          <b>{{phase2ExpenseHoursElapsed }} hrs.</b>
+        </div>
+      </div>
+      <hr class="summary-hr" />
+
+      <div class="flex-details-container">
+        <div class="flex-label">Total minutes saved:</div>
+        <div class="flex-value">
+          <b>{{expenseMinutesElapsed + phase2ExpenseMinutesElapsed}} mins.</b>
+        </div>
+      </div>
+      <div class="flex-details-container">
+        <div class="flex-label">Total hours saved:</div>
+        <div class="flex-value">
+          <b>{{totalHoursSaved}} hrs.</b>
         </div>
       </div>
       <div class="flex-details-container">
@@ -49,7 +104,7 @@
           <b>work days saved</b>:
         </div>
         <div class="flex-value">
-          <b style="color:red;">{{expenseBizDaysSaved }} days</b>
+          <b style="color:red;">{{totalBizDaysSaved}} days</b>
         </div>
       </div>
       <div class="flex-details-container">
@@ -57,7 +112,7 @@
           <b>Total DAYS I regained of my life!</b>
         </div>
         <div class="flex-value">
-          <b style="color:red;">{{expenseDaysSaved}} days!</b>
+          <b style="color:red;">{{totalDaysSaved}} days!</b>
         </div>
       </div>
     </div>
@@ -80,6 +135,16 @@ export default {
       expenseMonthsElapsed: 0,
       expenseBizDaysSaved: 0,
       expenseDaysSaved: 0,
+      phase2StartDate: new Date(2021, 11, 1),
+      phase2ExpenseTaskMinutes: 5,
+      phase2ExpenseMinutesElapsed: 0,
+      phase2ExpenseHoursElapsed: 0,
+      phase2ExpenseMonthsElapsed: 0,
+      phase2ExpenseBizDaysSaved: 0,
+      phase2ExpenseDaysSaved: 0,
+      totalHoursSaved: 0,
+      totalBizDaysSaved: 0,
+      totalDaysSaved: 0,
     };
   },
   computed: {
@@ -91,6 +156,16 @@ export default {
         this.startDate.getDate() +
         "/" +
         this.startDate.getFullYear()
+      );
+    },
+    getPhase2StartDate: function () {
+      return (
+        this.phase2StartDate.getMonth() +
+        1 +
+        "/" +
+        this.phase2StartDate.getDate() +
+        "/" +
+        this.phase2StartDate.getFullYear()
       );
     },
     getTodaysDate: function () {
@@ -106,10 +181,9 @@ export default {
   },
   methods: {
     getDayDifferenceAndCalcs: function () {
-      // Get the number of business days - week days - that have elapsed
+      // Get the number of months that have elapsed
       var monthDifference = differenceInMonths(this.startDate, this.todaysDate);
 
-      // Subtract the number of OPM stipulated federal holidays during that time
       this.expenseMonthsElapsed = monthDifference;
 
       // Set the data elements based on the calculated and filtered days
@@ -118,6 +192,45 @@ export default {
       this.expenseHoursElapsed = (this.expenseMinutesElapsed / 60).toFixed(2);
       this.expenseBizDaysSaved = (this.expenseHoursElapsed / 8).toFixed(2);
       this.expenseDaysSaved = (this.expenseHoursElapsed / 24).toFixed(2);
+
+      // Phase 2 Calcs
+
+      // Get the number of months that have elapsed in phase 2
+      var phase2MonthDifference = differenceInMonths(
+        this.phase2StartDate,
+        this.todaysDate
+      );
+
+      // Add one iteration to the months elapsed to reflect the expense report running
+      // the same month it was implemented - so the months would've been zero even
+      // though the benefit was realized
+      this.phase2ExpenseMonthsElapsed = phase2MonthDifference + 1;
+
+      this.phase2ExpenseMinutesElapsed =
+        this.phase2ExpenseMonthsElapsed * this.phase2ExpenseTaskMinutes;
+      this.phase2ExpenseHoursElapsed = (
+        this.phase2ExpenseMinutesElapsed / 60
+      ).toFixed(2);
+      this.phase2ExpenseBizDaysSaved = (
+        this.phase2ExpenseHoursElapsed / 8
+      ).toFixed(2);
+      this.phase2ExpenseDaysSaved = (
+        this.phase2ExpenseHoursElapsed / 24
+      ).toFixed(2);
+
+      this.totalHoursSaved = (
+        parseFloat(this.expenseHoursElapsed) +
+        parseFloat(this.phase2ExpenseHoursElapsed)
+      ).toFixed(2);
+
+      this.totalBizDaysSaved = (
+        parseFloat(this.expenseBizDaysSaved) +
+        parseFloat(this.phase2ExpenseBizDaysSaved)
+      ).toFixed(2);
+      this.totalDaysSaved = (
+        parseFloat(this.expenseDaysSaved) +
+        parseFloat(this.phase2ExpenseDaysSaved)
+      ).toFixed(2);
 
       return this.expenseMonthsElapsed;
     },
