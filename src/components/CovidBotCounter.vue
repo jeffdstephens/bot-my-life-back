@@ -2,14 +2,17 @@
   <div class="CovidBotCounter">
     <h2>Daily COVID-19 Team Status Report Bot</h2>
     <div>
+      <h3
+        style="color:red;"
+      >This bot no longer runs as the requirement for daily status report is no longer a thing. Yay!</h3>
       <h4>
-        This automation collects the developers' daily statuses from Slack and emails a single nightly status report for the team. To learn more about the details, check out
+        This automation collected the developers' daily statuses from Slack and emailed a single nightly status report for the team. To learn more about the details, check out
         <a
           href="https://www.jeffdstephens.com/posts/status-report-automation/"
           target="_blank"
         >the blog post</a> where I show you how it's done.
       </h4>
-      <h4>This automation runs every night, Monday-Friday. The time it took to complete this task manually was 30 mins. while the automation process is fully automated, resulting in personal time savings of 30 mins. per day.</h4>
+      <h4>This automation ran every night, Monday-Friday. The time it took to complete this task manually was 30 mins. while the automation process was fully automated, resulting in personal time savings of 30 mins. per day.</h4>
       <hr />
       <div class="flex-details-container">
         <div class="flex-label">Start date (the day my bot started doing the team status for me):</div>
@@ -18,9 +21,9 @@
         </div>
       </div>
       <div class="flex-details-container">
-        <div class="flex-label">Today's date:</div>
+        <div class="flex-label">End date:</div>
         <div class="flex-value">
-          <b>{{ getTodaysDate }}</b>
+          <b>{{ getEndDate }}</b>
         </div>
       </div>
       <div class="flex-details-container">
@@ -81,6 +84,7 @@ export default {
   data: function () {
     return {
       startDate: new Date(2020, 4, 19),
+      endDate: new Date(2022, 1, 14),
       todaysDate: new Date(),
       statusTaskMinutes: 30,
       statsuDaysElapsed: 0,
@@ -111,6 +115,16 @@ export default {
         this.todaysDate.getFullYear()
       );
     },
+    getEndDate: function () {
+      return (
+        this.endDate.getMonth() +
+        1 +
+        "/" +
+        this.endDate.getDate() +
+        "/" +
+        this.endDate.getFullYear()
+      );
+    },
   },
   methods: {
     getOPMHolidays: function () {
@@ -119,7 +133,7 @@ export default {
         shiftSundayHolidays: true,
       };
       // Find the holidays in the given date range
-      const holidays = inRange(this.startDate, this.todaysDate, options);
+      const holidays = inRange(this.startDate, this.endDate, options);
 
       // Return the number of holidays that occured
       return holidays.length;
@@ -127,7 +141,7 @@ export default {
     getDayDifferenceAndCalcs: function () {
       // Get the number of business days - week days - that have elapsed
       var bizDayDifference = differenceInBusinessDays(
-        this.todaysDate,
+        this.endDate,
         this.startDate
       );
 
